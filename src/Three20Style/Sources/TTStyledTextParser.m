@@ -141,7 +141,6 @@
       NSString* text = [string substringWithRange:searchRange];
       TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:text] autorelease];
       [self addNode:node];
-      break;
 
     } else {
       NSRange beforeRange = NSMakeRange(searchRange.location,
