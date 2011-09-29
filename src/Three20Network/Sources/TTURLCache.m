@@ -26,7 +26,7 @@
 #import "Three20Core/TTDebugFlags.h"
 #import "Three20Core/NSStringAdditions.h"
 
-static const  CGFloat   kLargeImageSize = 600 * 400;
+static const  CGFloat   kLargeImageSize = 600.0f * 400.0f;
 
 static        NSString* kDefaultCacheName       = @"Three20";
 static        NSString* kEtagCacheDirectoryName = @"etag";
@@ -62,7 +62,8 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithName:(NSString*)name {
-  if (self == [super init]) {
+	self = [super init];
+  if (self) {
     _name             = [name copy];
     _cachePath        = [[TTURLCache cachePathWithName:name] retain];
     _invalidationAge  = TT_DEFAULT_CACHE_INVALIDATION_AGE;
@@ -85,7 +86,8 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithName:kDefaultCacheName]) {
+	self = [self initWithName:kDefaultCacheName];
+  if (self) {
   }
 
   return self;

@@ -41,8 +41,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kShadowHeight = 24;
-static const CGFloat kDesiredTableHeight = 150;
+static const CGFloat kShadowHeight = 24.0f;
+static const CGFloat kDesiredTableHeight = 150.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,8 @@ static const CGFloat kDesiredTableHeight = 150;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _internal = [[TTSearchTextFieldInternal alloc] initWithTextField:self];
 
     self.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -268,7 +269,7 @@ static const CGFloat kDesiredTableHeight = 150;
   if ([_internal.delegate respondsToSelector:@selector(textField:didSelectObject:)]) {
     id object = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (cell.selectionStyle != UITableViewCellSeparatorStyleNone) {
+    if (cell.selectionStyle != UITableViewCellSelectionStyleNone) {
       [_internal.delegate performSelector:@selector(textField:didSelectObject:) withObject:self
                           withObject:object];
     }
@@ -471,7 +472,7 @@ static const CGFloat kDesiredTableHeight = 150;
 - (CGRect)rectForSearchResults:(BOOL)withKeyboard {
   UIView* superview = self.superviewForSearchResults;
 
-  CGFloat y = 0;
+  CGFloat y = 0.0f;
   UIView* view = self;
   while (view != superview) {
     y += view.top;
@@ -480,7 +481,7 @@ static const CGFloat kDesiredTableHeight = 150;
 
   CGFloat height = self.height;
   CGFloat keyboardHeight = withKeyboard ? TTKeyboardHeight() : 0;
-  CGFloat tableHeight = self.window.height - (self.ttScreenY + height + keyboardHeight);
+  CGFloat tableHeight = self.window.height - (self.screenViewY + height + keyboardHeight);
 
   return CGRectMake(0, y + self.height-1, superview.frame.size.width, tableHeight+1);
 }

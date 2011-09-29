@@ -35,8 +35,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kHPadding = 8;
-static const CGFloat kVPadding = 7;
+static const CGFloat kHPadding = 8.0f;
+static const CGFloat kVPadding = 7.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,7 +51,8 @@ static const CGFloat kVPadding = 7;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     self.backgroundColor = [UIColor clearColor];
     self.contentMode = UIViewContentModeRedraw;
   }

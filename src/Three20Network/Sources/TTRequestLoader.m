@@ -16,6 +16,9 @@
 
 #import "Three20Network/private/TTRequestLoader.h"
 
+//Global
+#import "Three20Network/TTErrorCodes.h"
+
 // Network
 #import "Three20Network/TTGlobalNetwork.h"
 #import "Three20Network/TTURLRequest.h"
@@ -49,7 +52,8 @@ static const NSInteger kLoadMaxRetries = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initForRequest:(TTURLRequest*)request queue:(TTURLRequestQueue*)queue {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _urlPath            = [request.urlPath copy];
     _queue              = queue;
     _cacheKey           = [request.cacheKey retain];
@@ -236,7 +240,24 @@ static const NSInteger kLoadMaxRetries = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSError*)processResponse:(NSHTTPURLResponse*)response data:(id)data {
   for (TTURLRequest* request in _requests) {
-    NSError* error = [request.response request:request processResponse:response data:data];
+    NSError* error = nil;
+    // We need to accept valid HTTP status codes, not only 200.
+    if (!response
+        || (response.statusCode >= 200 && response.statusCode < 300)
+        || response.statusCode == 304) {
+      error = [request.response request:request processResponse:response data:data];
+    } else {
+      if ([request.response respondsToSelector:@selector(request:processErrorResponse:data:)]) {
+        error = [request.response request:request processErrorResponse:response data:data];
+      }
+      // Supply an NSError object if request.response's
+      // request:processErrorResponse:data: does not return one.
+      if (!error) {
+        TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  FAILED LOADING (%d) %@", _response.statusCode, _urlPath);
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:data forKey:kTTErrorResponseDataKey];
+        error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode userInfo:userInfo];
+      }
+    }
     if (error) {
       return error;
     }
@@ -362,19 +383,10 @@ static const NSInteger kLoadMaxRetries = 2;
 
   TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Response status code: %d", _response.statusCode);
 
-  // We need to accept valid HTTP status codes, not only 200.
-  if (_response.statusCode >= 200 && _response.statusCode < 300) {
-    [_queue loader:self didLoadResponse:_response data:_responseData];
-
-  } else if (_response.statusCode == 304) {
+  if (_response.statusCode == 304) {
     [_queue loader:self didLoadUnmodifiedResponse:_response];
-
   } else {
-    TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  FAILED LOADING (%d) %@",
-                    _response.statusCode, _urlPath);
-    NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
-                                     userInfo:nil];
-    [_queue loader:self didFailLoadWithError:error];
+    [_queue loader:self didLoadResponse:_response data:_responseData];
   }
 
   TT_RELEASE_SAFELY(_responseData);

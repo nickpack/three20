@@ -104,7 +104,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initInView:(UIView *)view location:(CGPoint)location {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _tapCount = 1;
     _locationInWindow = location;
     _previousLocationInWindow = location;
@@ -139,7 +140,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTouch:(UITouch *)touch {
-  if (self == [super init]) {
+	self = [super init];
+  if (self) {
     UIEventFake *selfFake = (UIEventFake*)self;
     selfFake->_touches = [[NSMutableSet setWithObject:touch] retain];
     selfFake->_timestamp = [NSDate timeIntervalSinceReferenceDate];
@@ -286,7 +288,7 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)ttScreenX {
-  CGFloat x = 0;
+  CGFloat x = 0.0f;
   for (UIView* view = self; view; view = view.superview) {
     x += view.left;
   }
@@ -296,7 +298,7 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)ttScreenY {
-  CGFloat y = 0;
+  CGFloat y = 0.0f;
   for (UIView* view = self; view; view = view.superview) {
     y += view.top;
   }
@@ -306,7 +308,7 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)screenViewX {
-  CGFloat x = 0;
+  CGFloat x = 0.0f;
   for (UIView* view = self; view; view = view.superview) {
       x += view.left;
 
@@ -441,7 +443,7 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGPoint)offsetFromView:(UIView*)otherView {
-  CGFloat x = 0, y = 0;
+  CGFloat x = 0.0f, y = 0.0f;
   for (UIView* view = self; view && view != otherView; view = view.superview) {
     x += view.left;
     y += view.top;

@@ -26,8 +26,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kSpacing = 4;
-static const CGFloat kDefaultThumbSize = 75;
+static const CGFloat kSpacing = 4.0f;
+static const CGFloat kDefaultThumbSize = 75.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,8 @@ static const CGFloat kDefaultThumbSize = 75;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
+	self = [super initWithStyle:style reuseIdentifier:identifier];
+  if (self) {
     _thumbViews = [[NSMutableArray alloc] init];
     _thumbSize = kDefaultThumbSize;
     _thumbOrigin = CGPointMake(kSpacing, 0);

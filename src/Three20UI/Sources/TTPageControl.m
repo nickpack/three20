@@ -42,7 +42,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     self.backgroundColor = [UIColor clearColor];
     self.dotStyle = @"pageDot:";
     self.hidesForSinglePage = NO;
@@ -134,7 +135,7 @@
   TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
   CGSize dotSize = [self.normalDotStyle addToSize:CGSizeZero context:context];
 
-  CGFloat margin = 0;
+  CGFloat margin = 0.0f;
   TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
   if (boxStyle) {
     margin = boxStyle.margin.right + boxStyle.margin.left;

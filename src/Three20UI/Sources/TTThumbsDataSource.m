@@ -32,8 +32,8 @@
 #import "Three20Core/TTGlobalCoreLocale.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static CGFloat kThumbSize = 75;
-static CGFloat kThumbSpacing = 4;
+static CGFloat kThumbSize = 75.0f;
+static CGFloat kThumbSpacing = 4.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +48,8 @@ static CGFloat kThumbSpacing = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithPhotoSource:(id<TTPhotoSource>)photoSource
                  delegate:(id<TTThumbsTableViewCellDelegate>)delegate {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _photoSource = [photoSource retain];
     _delegate = delegate;
   }

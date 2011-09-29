@@ -41,7 +41,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNext:(TTStyle*)next {
-  if (self = [super initWithNext:next]) {
+	self = [super initWithNext:next];
+  if (self) {
     _width = 1;
     _lightSource = kDefaultLightSource;
   }
@@ -104,7 +105,7 @@
   UIColor* topColor = _lightSource >= 0 && _lightSource <= 180 ? _highlight : _shadow;
   UIColor* leftColor = _lightSource >= 90 && _lightSource <= 270
   ? _highlight : _shadow;
-  UIColor* bottomColor = _lightSource >= 180 && _lightSource <= 360 || _lightSource == 0
+  UIColor* bottomColor = (_lightSource >= 180 && _lightSource <= 360) || _lightSource == 0
   ? _highlight : _shadow;
   UIColor* rightColor = (_lightSource >= 270 && _lightSource <= 360)
   || (_lightSource >= 0 && _lightSource <= 90)

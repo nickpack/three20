@@ -57,7 +57,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _photoVersion = TTPhotoVersionNone;
     self.clipsToBounds = NO;
   }
@@ -184,7 +185,7 @@
   CGFloat height = self.height;
   CGFloat cx = self.bounds.origin.x + width/2;
   CGFloat cy = self.bounds.origin.y + height/2;
-  CGFloat marginRight = 0, marginLeft = 0, marginBottom = TTToolbarHeight();
+  CGFloat marginRight = 0.0f, marginLeft = 0.0f, marginBottom = TTToolbarHeight();
 
   // Since the photo view is constrained to the size of the image, but we want to position
   // the status views relative to the screen, offset by the difference
@@ -279,14 +280,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)loadPreview:(BOOL)fromNetwork {
-  if (![self loadVersion:TTPhotoVersionLarge fromNetwork:NO]) {
-    if (![self loadVersion:TTPhotoVersionSmall fromNetwork:NO]) {
-      if (![self loadVersion:TTPhotoVersionThumbnail fromNetwork:fromNetwork]) {
-        return NO;
+	if (![self loadVersion:TTPhotoVersionLarge fromNetwork:NO]) {
+      if (![self loadVersion:TTPhotoVersionSmall fromNetwork:NO]) {
+        if (![self loadVersion:TTPhotoVersionThumbnail fromNetwork:fromNetwork]) {
+          return NO;
+        }
       }
     }
-  }
-
   return YES;
 }
 

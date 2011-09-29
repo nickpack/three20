@@ -32,10 +32,10 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kShadowHeight        = 20.0;
-static const CGFloat kShadowInverseHeight = 10.0;
+static const CGFloat kShadowHeight        = 20.0f;
+static const CGFloat kShadowInverseHeight = 10.0f;
 
-static const CGFloat kCancelHighlightThreshold = 4;
+static const CGFloat kCancelHighlightThreshold = 4.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,7 +50,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-  if (self = [super initWithFrame:frame style:style]) {
+	self = [super initWithFrame:frame style:style];
+  if (self) {
     _highlightStartPoint = CGPointZero;
   }
 
@@ -101,6 +102,15 @@ static const CGFloat kCancelHighlightThreshold = 4;
 //  }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
+
+    if ([self.delegate respondsToSelector:@selector(tableView:touchesMoved:withEvent:)]) {
+        id<TTTableViewDelegate> delegate = (id<TTTableViewDelegate>)self.delegate;
+        [delegate tableView:self touchesMoved:touches withEvent:event];
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {

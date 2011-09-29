@@ -31,8 +31,8 @@
 #import "Three20Core/NSDateAdditions.h"
 
 static const NSInteger  kMessageTextLineCount       = 2;
-static const CGFloat    kDefaultMessageImageWidth   = 34;
-static const CGFloat    kDefaultMessageImageHeight  = 34;
+static const CGFloat    kDefaultMessageImageWidth   = 34.0f;
+static const CGFloat    kDefaultMessageImageHeight  = 34.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,10 +43,12 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier]) {
+	self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier];
+  if (self) {
     self.textLabel.font = TTSTYLEVAR(font);
     self.textLabel.textColor = TTSTYLEVAR(textColor);
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+	self.textLabel.backgroundColor = TTSTYLEVAR(backgroundTextColor);
     self.textLabel.textAlignment = UITextAlignmentLeft;
     self.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
     self.textLabel.adjustsFontSizeToFitWidth = YES;
@@ -55,6 +57,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
     self.detailTextLabel.font = TTSTYLEVAR(font);
     self.detailTextLabel.textColor = TTSTYLEVAR(tableSubTextColor);
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+	self.detailTextLabel.backgroundColor = TTSTYLEVAR(backgroundTextColor);
     self.detailTextLabel.textAlignment = UITextAlignmentLeft;
     self.detailTextLabel.contentMode = UIViewContentModeTop;
     self.detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
@@ -101,6 +104,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
   [_imageView2 unsetImage];
   _titleLabel.text = nil;
   _timestampLabel.text = nil;
+  self.captionLabel.text = nil;
 }
 
 
@@ -108,7 +112,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  CGFloat left = 0;
+  CGFloat left = 0.0f;
   if (_imageView2) {
     _imageView2.frame = CGRectMake(kTableCellSmallMargin, kTableCellSmallMargin,
                                    kDefaultMessageImageWidth, kDefaultMessageImageHeight);

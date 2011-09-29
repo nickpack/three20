@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		662D819D126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 662D819C126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		664B29BF12848AA50008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29BC12848AA50008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		664B29C312848AAD0008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29C012848AAD0008D569 /* TTErrorCodes.m */; };
 		66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */; };
@@ -44,6 +45,7 @@
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE739CD1184BAF600A35176 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */; };
 		6EF96405118EFCF0003902E7 /* TTURLRequestQueueInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF96404118EFCF0003902E7 /* TTURLRequestQueueInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1F076A1130521F7007CA6F1 /* NetworkRequestTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		662D819C126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		664B29BC12848AA50008D569 /* TTErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorCodes.h; path = Headers/TTErrorCodes.h; sourceTree = "<group>"; };
 		664B29C012848AAD0008D569 /* TTErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorCodes.m; path = Sources/TTErrorCodes.m; sourceTree = "<group>"; };
 		66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkURLCacheTests.m; path = UnitTests/NetworkURLCacheTests.m; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 		6EE7366611849C5800A35176 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6EF96404118EFCF0003902E7 /* TTURLRequestQueueInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestQueueInternal.h; path = Headers/TTURLRequestQueueInternal.h; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20Network.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequestTimeoutTests.m; sourceTree = "<group>"; };
 		EB9E6C6210B6A8F800DE563C /* NetworkUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -173,13 +177,23 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
+		662D819B126304DE005851C2 /* Xcode 3.2.4 Workaround */ = {
+			isa = PBXGroup;
+			children = (
+				662D819C126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */,
+			);
+			name = "Xcode 3.2.4 Workaround";
+			sourceTree = "<group>";
+		};
 		6E08B274118282F700DA1579 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				6EE7364611849AF200A35176 /* Resources */,
 				6E08B27D118282F700DA1579 /* Mocks */,
+				662D819B126304DE005851C2 /* Xcode 3.2.4 Workaround */,
 				6EE7363B11849AA100A35176 /* NetworkModelTests.m */,
 				66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */,
+				E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -383,7 +397,6 @@
 				BEF31F360F352DF5000DE5D2 /* Headers */,
 				6E645F091187AD0E00F08CB1 /* Protect Copied Headers */,
 				BEF31F370F352DF5000DE5D2 /* Sources */,
-				668E65A0131ADF9B00ACE4AB /* Lint */,
 				BEF31F380F352DF5000DE5D2 /* Frameworks */,
 			);
 			buildRules = (
@@ -481,21 +494,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		668E65A0131ADF9B00ACE4AB /* Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Lint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/usr/bin/env python ../scripts/lint";
-			shellScript = "";
-			showEnvVarsInLog = 0;
-		};
 		6E645F091187AD0E00F08CB1 /* Protect Copied Headers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -550,7 +548,9 @@
 			files = (
 				6EE7363A11849A9800A35176 /* MockModelDelegate.m in Sources */,
 				6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */,
+				662D819D126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 				66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */,
+				E1F076A1130521F7007CA6F1 /* NetworkRequestTimeoutTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,8 +595,6 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -613,8 +611,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;

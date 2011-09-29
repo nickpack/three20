@@ -48,6 +48,21 @@ BOOL TTIsPad();
 UIDeviceOrientation TTDeviceOrientation();
 
 /**
+ * @return TRUE if the current device orientation is portrait or portrait upside down.
+ */
+BOOL TTDeviceOrientationIsPortrait();
+
+/**
+ * @return TRUE if the current device orientation is landscape left, or landscape right.
+ */
+BOOL TTDeviceOrientationIsLandscape();
+
+/**
+ * @return device full model name in human readable strings
+ */
+NSString* TTDeviceModelName();
+
+/**
  * On iPhone/iPod touch
  * Checks if the orientation is portrait, landscape left, or landscape right.
  * This helps to ignore upside down and flat orientations.

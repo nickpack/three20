@@ -30,7 +30,7 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kMoreButtonMargin = 40;
+static const CGFloat kMoreButtonMargin = 40.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,8 +43,10 @@ static const CGFloat kMoreButtonMargin = 40;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier]) {
+	self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+  if (self) {
     self.textLabel.font = TTSTYLEVAR(tableSmallFont);
+	self.textLabel.backgroundColor = TTSTYLEVAR(backgroundTextColor);
   }
 
   return self;

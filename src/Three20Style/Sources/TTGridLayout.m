@@ -29,7 +29,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _columnCount = 1;
   }
 
@@ -47,10 +48,10 @@
 - (CGSize)layoutSubviews:(NSArray*)subviews forView:(UIView*)view {
   CGFloat innerWidth = (view.frame.size.width - _padding*2);
   CGFloat width = ceil(innerWidth / _columnCount);
-  CGFloat rowHeight = 0;
+  CGFloat rowHeight = 0.0f;
 
   CGFloat x = _padding, y = _padding;
-  CGFloat maxX = 0, lastHeight = 0;
+  CGFloat maxX = 0.0f, lastHeight = 0.0f;
   NSInteger column = 0;
   for (UIView* subview in subviews) {
     if (column % _columnCount == 0) {
