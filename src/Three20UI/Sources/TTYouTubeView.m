@@ -28,9 +28,10 @@ static CGFloat kDefaultHeight = 105.0f;
 static NSString* kEmbedHTML = @"\
 <html>\
 <head>\
+<style>embed, object { padding:0px; margin:0px; }</style>\
 <meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no, width=%0.0f\"/>\
 </head>\
-<body style=\"background:#fff;margin-top:0px;margin-left:0px\">\
+<body style=\"background:transparent;margin:0px;padding:0px\">\
 <div><object width=\"%0.0f\" height=\"%0.0f\">\
 <param name=\"movie\" value=\"%@\"></param><param name=\"wmode\"\
 value=\"transparent\"></param>\
@@ -52,10 +53,12 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURLPath:(NSString*)urlPath {
 	self = [self initWithFrame:CGRectMake(0, 0, kDefaultWidth, kDefaultHeight)];
-  if (self) {
-    self.urlPath = urlPath;
-  }
-  return self;
+    
+    if (self) {
+        self.urlPath = urlPath;
+    }
+    
+    return self;
 }
 
 
@@ -76,7 +79,27 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   [self stringByEvaluatingJavaScriptFromString:
-    [NSString stringWithFormat:@"yt.width = %0.0f; yt.height = %0.0f", self.width, self.height]];
+    [NSString stringWithFormat:@"yt.width = %0.0f; yt.height = %0.0f", self.width, (self.height-20)]];
+    /*[self stringByEvaluatingJavaScriptFromString:@"<script>document.onload = function(){ document.ontouchmove = function(e){ e.preventDefault(); }};</script>"];*/
+    
+    self.backgroundColor = [UIColor clearColor];
+    self.opaque = NO;
+    
+    for(UIScrollView* webScrollView in [self subviews])
+	{
+        if ([webScrollView isKindOfClass:[UIScrollView class]])
+		{
+            [webScrollView setScrollEnabled:NO];
+            for(UIView* subview in [webScrollView subviews])
+			{
+                if ([subview isKindOfClass:[UIImageView class]])
+				{
+                    ((UIImageView*)subview).image = nil;
+                    subview.backgroundColor = [UIColor clearColor];
+                }
+            }
+        }
+    }
 }
 
 
