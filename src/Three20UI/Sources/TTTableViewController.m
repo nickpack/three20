@@ -468,7 +468,7 @@
           [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox]
            autorelease];
         label.text = title;
-        label.backgroundColor = _tableView.backgroundColor;
+        label.backgroundColor = RGBCOLOR(255,255,255);
         self.loadingView = label;
       }
     }
